@@ -1,0 +1,29 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "keycloak-postgresql"
+spec:
+  ports:
+    -
+      name: "pgsql"
+      protocol: "TCP"
+      port: 5432
+      targetPort: 5432
+      nodePort: 0
+selector: {}
+
+---
+
+kind: "Endpoints"
+apiVersion: "v1"
+metadata:
+  name: "keycloak-postgresql"
+subsets:
+  -
+    addresses:
+      -
+        ip: "192.168.252.202"
+    ports:
+      -
+        port: 5432
+        name: "pgsql"

@@ -1,0 +1,31 @@
+apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  labels:
+    app: sso
+  name: riu-sso
+  namespace: softtek-redhatsso-poc
+spec:
+  externalAccess:
+    enabled: true
+  externalDatabase:
+    enabled: true
+  instances: 2
+  keycloakDeploymentSpec:
+    experimental:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: NotIn
+                      values:
+                        - keycloak
+                topologyKey: kubernetes.io/hostname
+              weight: 100
+    imagePullPolicy: Always
+  multiAvailablityZones:
+    enabled: true
+  storageClassName: ocs-storagecluster-cephfs
