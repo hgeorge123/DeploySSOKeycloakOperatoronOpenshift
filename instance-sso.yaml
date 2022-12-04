@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sso
   name: riu-sso
-  namespace: softtek-redhatsso-poc
+  namespace: redhatsso-poc
 spec:
   externalAccess:
     enabled: true
