@@ -4,7 +4,7 @@ metadata:
   name: rhsso-operator-group
 spec:
   targetNamespaces:
-  -  softtek-redhatsso-poc
+  -  redhatsso-poc
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
